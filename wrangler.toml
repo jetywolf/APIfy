@@ -1,0 +1,21 @@
+name                = "apiify"
+main                = "src/index.js"
+compatibility_date  = "2024-09-23"
+# unsafe_eval enables new Function() for dynamic API execution
+compatibility_flags = ["nodejs_compat", "unsafe_eval"]
+
+[[d1_databases]]
+binding       = "DB"
+database_name = "apiify-db"
+database_id   = "REPLACE_WITH_YOUR_D1_ID"   # wrangler d1 create apiify-db
+
+[[r2_buckets]]
+binding     = "R2"
+bucket_name = "apiify-storage"               # wrangler r2 bucket create apiify-storage
+
+[vars]
+# Update to your actual workers.dev subdomain after deploy
+BASE_URL = "https://apiify.YOUR_SUBDOMAIN.workers.dev"
+
+# Set secrets via CLI (never commit):
+#   wrangler secret put OPENAI_API_KEY
